@@ -45,7 +45,7 @@
             <field name="res_model">purchase.request.line</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="purchase_request_line_act" name="Chi tiết yêu cầu"
+        <menuitem id="purchase_request_line_menu" name="Chi tiết yêu cầu"
                   parent="purchase_request_main"
                   action="purchase_request_line_act" sequence="2"/>
         <record id="purchase_request_line_view_search" model="ir.ui.view">

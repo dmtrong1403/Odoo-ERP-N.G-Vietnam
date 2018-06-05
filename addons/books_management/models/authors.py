@@ -9,13 +9,11 @@ class Author(models.Model):
     _decription ="My ebook"
     _order = "author_name"
     _translate = False;
-
     author_name = fields.Char("Author name")
     date_of_birth = fields.Date("Date of birth")
     books = fields.One2many(comodel_name="books_management.mybook",
                             inverse_name="author",
                             string="Main editor")
-
     _sql_constraints = [
      ('name_uniq', 'UNIQUE(author_name)',
      'You can not enter two author with the same name ')

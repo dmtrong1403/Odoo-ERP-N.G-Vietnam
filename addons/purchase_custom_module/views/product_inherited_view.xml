@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Bổ sung hiển thị form view của model: product.product-->
+    <record id="view_product_form_inherited" model="ir.ui.view">
+        <field name="name">product.product.form.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin xuất xứ, bảo hành, hãng SX-->
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="product_country"/>
+                <field name="product_warranty"/>
+                <field name="manufacturer"/>
+            </xpath>
+            <!--Bổ sung label yêu cầu kỹ thuật-->
+            <xpath expr="//field[@name='attribute_value_ids']" position="replace">
+                <label for="attribute_value_ids" string="Yêu cầu kỹ thuật"/>
+                <field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>
+            </xpath>
+            <!--Replace form bảng giá mới-->
+            <xpath expr="//field[@name='seller_ids']" position="replace">
+                <field name="custom_pricelist_ids">
+                    <tree editable="bottom">
+                        <field name="vendor_id"/>
+                        <field name="attribute_value_ids" widget="many2many_tags" invisible="1"/>
+                        <field name="product_qty"/>
+                        <field name="product_uom"/>
+                        <field name="price_unit"/>
+                        <field name="number_of_delivery_day"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+    <!--Bổ sung hiển thị tree view của model: product.product-->
+    <record id="view_product_tree_inherited" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin xuất xứ, bảo hành, hãng SX-->
+            <xpath expr="//field[@name='uom_id']" position="after">
+                <field name="product_country"/>
+                <field name="product_warranty"/>
+                <field name="manufacturer"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Tạo form view cho model: product.attribute.value-->
+    <record id="product_attribute_replace_form_view" model="ir.ui.view">
+        <field name="name">product.attribute.value.replaced</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="attribute_id"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

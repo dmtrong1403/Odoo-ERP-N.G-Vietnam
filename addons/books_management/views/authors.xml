@@ -1,0 +1,30 @@
+<?xml  version="1.0" encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="books_management_author_act"
+                model="ir.actions.act_window">
+            <field name="name">Author management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">books_management.author</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="books_management_author_view_tree" model="ir.ui.view">
+            <field name="name">Main author</field>
+            <field name="model">books_management.author</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="author_name"/>
+                    <field name="date_of_birth"/>
+                    <field name="books" widget="many2many_tags"/>
+                    <!--<field name="money"/>-->
+                </tree>
+            </field>
+        </record>
+        <menuitem id="author_menu" name="Author"
+                  parent="books_main_menu"
+                  action="books_management_author_act" sequence="2"/>
+    </data>
+</odoo>
+
+
+        

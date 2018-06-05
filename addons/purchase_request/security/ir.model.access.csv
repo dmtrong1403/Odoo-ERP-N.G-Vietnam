@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_request_ycmh_user,purchase.request,model_purchase_request,group_ycmh_user,1,1,1,1
+access_purchase_request_line_ycmh_user,purchase.request.line,model_purchase_request_line,group_ycmh_user,1,1,1,1
+access_product_template_ycmh_user,product.template group_ycmh_user,product.model_product_template,group_ycmh_user,1,1,0,0
+access_stock_move_ycmh_user,stock.move group_ycmh_user,stock.model_stock_move,group_ycmh_user,1,1,0,0
+access_purchase_request_ycmh_manager,purchase.request,model_purchase_request,group_ycmh_manager,1,1,1,1
+access_purchase_request_line_ycmh_manager,purchase.request.line,model_purchase_request_line,group_ycmh_manager,1,1,1,1
+access_product_template_ycmh_manager,product.template group_ycmh_manager,product.model_product_template,group_ycmh_manager,1,1,0,0
+access_stock_move_ycmh_manager,stock.move group_ycmh_manager,stock.model_stock_move,group_ycmh_manager,1,1,0,0
+access_purchase_request_purchase_user,purchase.request,model_purchase_request,purchase.group_purchase_user,1,1,1,1
+access_purchase_request_line_purchase_user,purchase.request.line,model_purchase_request_line,purchase.group_purchase_user,1,1,1,1
+access_purchase_request_tag_group_ycmh_user,purchase.request.tag,model_purchase_request_tag,group_ycmh_user,1,1,1,1
+access_purchase_request_tag_group_ycmh_manager,purchase.request.tag,model_purchase_request_tag,group_ycmh_manager,1,1,1,1
+access_purchase_request_tag_group_purchase_user,purchase.request.tag,model_purchase_request_tag,purchase.group_purchase_user,1,1,1,1
+access_purchase_request_tag_group_purchase_manager,purchase.request.tag,model_purchase_request_tag,purchase.group_purchase_manager,1,1,1,1
+access_stock_warehouse_orderpoint_ycmh_user,stock.warehouse.orderpoint,stock.model_stock_warehouse_orderpoint,group_ycmh_user,1,0,0,0
+access_stock_warehouse_orderpoint_ycmh_manager,stock.warehouse.orderpoint,stock.model_stock_warehouse_orderpoint,group_ycmh_manager,1,0,0,0
+access_product_product_ycmh_user,product.product group_ycmh_user,product.model_product_product,group_ycmh_user,1,1,1,0
+access_product_product_ycmh_manager,product.product group_ycmh_manager,product.model_product_product,group_ycmh_manager,1,1,1,0

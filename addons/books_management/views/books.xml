@@ -1,0 +1,103 @@
+<?xml  version="1.0" encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="books_management_book_view_tree" model="ir.ui.view">
+            <field name="name">Main book</field>
+            <field name="model">books_management.mybook</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_name"/>
+                    <field name="book_type"/>
+                    <field name="count"/>
+                    <field name="money"/>
+                </tree>
+            </field>
+        </record>
+        <record id="books_management_book_view_form" model="ir.ui.view">
+            <field name="name">View single book</field>
+            <field name="model">books_management.mybook</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <field name="book_description"/>
+                        <div class="oe_title">
+                            <label for="book_name"/>
+                            <h1>
+                                <field name="book_name"/>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page string="Book information">
+                                <group>
+                                    <group>
+                                        <field name="book_type"/>
+                                        <field name="count"/>
+                                        <field name="money"/>
+                                        <field name="price"/>
+                                        <field name="status"/>
+                                    </group>
+                                    <group>
+                                        <field name="book_description"/>
+                                        <field name="book_publish_date"/>
+                                        <field name="book_update_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="author"/>
+                                        <field name="editors" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Book Demo">
+                                <group>
+                                    <field name="demo_content"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="books_management_book_view_kanban" model="ir.ui.view">
+            <field name="name">Book kanban view</field>
+            <field name="model">books_management.mybook</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="book_name"/>
+                    <field name="image"/>
+                    <field name="book_type"/>
+                    <template>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_details">
+                                    <a type="open">
+                                        <strong>
+                                            <field name="book_name"/>
+                                        </strong><br/>
+                                    </a>
+                                    <field name="book_type"/><br/>
+                                    <field name="count"/>
+                                </div>
+                            </div>
+                        </t>
+                    </template>
+                </kanban>
+            </field>
+        </record>
+        <record id="books_management_book_act"
+                model="ir.actions.act_window">
+            <field name="name">Book management</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">books_management.mybook</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+        <menuitem id="books_main_menu" name="Book management"
+                  sequence="1"/>
+        <menuitem id="books_sub_menu" name="Book"
+                  parent="books_main_menu"
+                  action="books_management_book_act" sequence="1"/>
+    </data>
+</odoo>
+
+
+        

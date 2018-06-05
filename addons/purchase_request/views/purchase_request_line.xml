@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="purchase_request_line_tree_view" model="ir.ui.view">
+            <field name="name">Chi tiết yêu cầu</field>
+            <field name="model">purchase.request.line</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="is_finished==True">
+                    <field name="purchase_request_id"/>
+                    <field name="product_id"/>
+                    <field name="product_uom"/>
+                    <field name="product_qty"/>
+                    <field name="attribute_value_ids" widget="many2many_tags"/>
+                    <field name="deadline"/>
+                    <field name="vendor"/>
+                    <field name="note"/>
+                    <field name="is_finished" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="purchase_request_line_form_view" model="ir.ui.view">
+            <field name="name">Purchase request line form view</field>
+            <field name="model">purchase.request.line</field>
+            <field name="arch" type="xml">
+                <form string="Yêu cầu mua hàng">
+                    <group>
+                        <group string="Thông tin sản phẩm">
+                            <field name="product_id" attrs="{'readonly': True}"/>
+                            <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': True}"/>
+                        </group>
+                        <group string="Thông tin yêu cầu">
+                            <field name="product_qty" attrs="{'readonly': True}"/>
+                            <field name="product_uom" attrs="{'readonly': True}"/>
+                            <field name="deadline" attrs="{'readonly': True}"/>
+                            <field name="vendor" attrs="{'readonly': True}"/>
+                            <field name="note" attrs="{'readonly': True}"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="purchase_request_line_act" model="ir.actions.act_window">
+            <field name="name">Chi tiết yêu cầu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.request.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="purchase_request_line_act" name="Chi tiết yêu cầu"
+                  parent="purchase_request_main"
+                  action="purchase_request_line_act" sequence="2"/>
+        <record id="purchase_request_line_view_search" model="ir.ui.view">
+            <field name="model">purchase.request.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="check_draft" string="Đã tiếp nhận"
+                            domain="[('state','=', 'received')]"/>
+                    <filter name="check_is_finished" string="Cần mua"
+                            domain="[('is_finished','=',False)]"
+                            groups="purchase.group_purchase_user"/>
+                    <filter name="check_done" string="Đã hoàn thành"
+                            domain="[('is_finished','=',True)]"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

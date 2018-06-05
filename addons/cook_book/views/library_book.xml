@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window
+                id="library_book_action"
+                name="Library Books"
+                res_model="library.book"/>
+        <menuitem
+                id="library_book_menu"
+                name="Library"
+                action="library_book_action"
+                parent=""
+                sequence="5"/>
+        <record id="library_book_view_form" model="ir.ui.view">
+            <field name="name">Library Book Form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form string="Book">
+                    <sheet>
+                        <field name="cover" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="short_name"/>
+                                <field name="ref_doc_id"/>
+                            </group>
+                            <group>
+                                <field name="state"/>
+                                <field name="active"/>
+                                <field name="out_of_print"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Book information">
+                                <group>
+                                    <group string="General info">
+                                        <field name="date_release"/>
+                                        <field name="date_updated"/>
+                                        <field name="age_days"/>
+                                        <field name="pages"/>
+                                        <field name="reader_rating"/>
+                                    </group>
+                                    <group string="Publisher info">
+                                        <field name="publisher_id"/>
+                                        <field name="publisher_city"/>
+                                    </group>
+                                    <group string="Author info">
+                                        <field name="author_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Price and Cost">
+                                <group string="Price">
+                                    <field name="retail_price"/>
+                                    <field name="cost_price"/>
+                                </group>
+                                <group string="currency">
+                                    <field name="currency_id"/>
+                                </group>
+                            </page>
+                            <page string="Demo content">
+                                <field name="description"/>
+                            </page>
+                            <page string="Notes">
+                                <field name="notes"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="library_book_view_tree" model="ir.ui.view">
+            <field name="name">Library Book List</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_release"/>
+                </tree>
+            </field>
+        </record>
+        <record id="library_book_view_search" model="ir.ui.view">
+            <field name="name">Library Book Search</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="author_ids"/>
+                    <filter string="No Authors"
+                            domain="[('author_ids','=',False)]"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

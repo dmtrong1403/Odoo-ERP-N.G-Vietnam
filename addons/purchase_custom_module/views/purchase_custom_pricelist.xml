@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="purchase_custom_pricelist_view_tree" model="ir.ui.view">
+            <field name="name">Purchase custom pricelist tree view</field>
+            <field name="model">purchase.custom.pricelist</field>
+            <field name="arch" type="xml">
+                <tree default_order='write_date desc'>
+                    <field name="vendor_id"/>
+                    <field name="product_id"/>
+                    <field name="product_country"/>
+                    <field name="manufacturer"/>
+                    <field name="product_warranty"/>
+                    <field name="attribute_value_ids" widget="many2many_tags"/>
+                    <field name="price_unit"/>
+                    <field name="number_of_delivery_day"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="purchase_custom_pricelist_view_form" model="ir.ui.view">
+            <field name="name">Purchase custom pricelist form view</field>
+            <field name="model">purchase.custom.pricelist</field>
+            <field name="arch" type="xml">
+                <form string="Chi tiết bảng giá sản phẩm">
+                    <group>
+                        <group string="Thông tin sản phẩm">
+                            <field name="product_id"/>
+                            <field name="product_country" attrs="{'readonly': True}"/>
+                            <field name="manufacturer" attrs="{'readonly': True}"/>
+                            <field name="product_warranty" attrs="{'readonly': True}"/>
+                            <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': True}"/>
+                        </group>
+                        <group string="Thông tin báo giá NCC">
+                            <field name="vendor_id"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom"/>
+                            <field name="price_unit"/>
+                            <field name="number_of_delivery_day"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="purchase_custom_pricelist_act" model="ir.actions.act_window">
+            <field name="name">Bảng giá sản phẩm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.custom.pricelist</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="purchase_custom_pricelist_menu" name="Quản lý bảng giá sản phẩm"
+                  parent="purchase.menu_procurement_management"
+                  action="purchase_custom_pricelist_act" sequence="1"/>
+    </data>
+</odoo>

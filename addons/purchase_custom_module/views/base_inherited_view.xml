@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Bổ sung hiển thị form view của model: res.partner -->
+    <record id="view_crm_custom" model="ir.ui.view">
+        <field name="name">crm.custom.form.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin đánh giá nhà cung cấp-->
+            <xpath expr="//field[@name='lang']" position="after">
+                <field name="crm_rating" widget="priority"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

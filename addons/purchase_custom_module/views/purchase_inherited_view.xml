@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Bổ sung hiển thị form view của model: purchase.order.line -->
+    <record id="purchase_order_line_form_2_custom" model="ir.ui.view">
+        <field name="name">purchase.order.line.form.2.inherited</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form2"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin giảm giá-->
+            <field name="price_unit" position="after">
+                <field name="discount"/>
+            </field>
+            <!--Bổ sung thông tin đánh giá PO theo từng line-->
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="rating_by_po" widget="priority"/>
+            </xpath>
+            <!--Bổ sung STT item theo từng line-->
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="line_no" string="STT" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Bổ sung hiển thị tree view của model: purchase.order.line -->
+    <record id="purchase_order_line_tree_custom" model="ir.ui.view">
+        <field name="name">purchase.order.line.tree.inherited</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin giảm giá-->
+            <field name="price_unit" position="after">
+                <field name="discount"/>
+            </field>
+            <!--Bổ sung thông tin đánh giá PO theo từng line-->
+            <xpath expr="//field[@name='date_planned']" position="after">
+                <field name="rating_by_po"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Bổ sung hiển thị form view của model: purchase.order -->
+    <record id="purchase_order_form_custom" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherited</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin purchase request-->
+            <xpath expr="//field[@name='partner_ref']" position="replace">
+                <field name="tag_ids" widget="many2many_tags"/>
+                <field name="purchase_request_id"/>
+            </xpath>
+            <!--Bổ sung thông tin trạng thái hợp đồng-->
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="contract_status" widget="selection"/>
+            </xpath>
+            <!--Bổ sung tab thông tin hợp đồng-->
+            <xpath expr="//page[last()]" position="replace">
+                <page string="Quản lý hợp đồng">
+                    <field name="purchase_contract_line_ids">
+                        <tree editable="bottom">
+                            <field name="contract_phase"/>
+                            <field name="payment_date"/>
+                            <field name="payment_amount"/>
+                            <field name="note"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <!--Bổ sung thông tin xuất xứ, hãng, yêu cầu KT-->
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_country" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
+                <field name="manufacturer" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
+                <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
+            </xpath>
+            <!--Bổ sung STT item theo từng line-->
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="line_no" string="STT" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Bổ sung hiển thị tree view của model: purchase.order -->
+    <record id="purchase_order_tree_custom" model="ir.ui.view">
+        <field name="name">purchase.order.tree.inherited</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin trạng thái hợp đồng, tag name từ purchase.request-->
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="contract_status"/>
+                <field name="tag_ids" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+	<!--Override menu của model: purchase.order -->
+    <record model="ir.ui.menu" id="purchase.menu_procurement_partner_contact_form">
+        <!--hide menu products của model: purchase.order -->
+        <field name="groups_id" eval="[(6,0,[ref('hide')])]"/>
+    </record>
+    <record model="ir.ui.menu" id="purchase.product_product_menu">
+        <!--Rename menu Product Variant của model: purchase.order -->
+        <field name="name">Sản phẩm</field>
+    </record>
+</odoo>

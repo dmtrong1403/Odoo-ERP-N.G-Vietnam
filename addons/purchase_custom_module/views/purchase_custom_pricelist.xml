@@ -30,7 +30,7 @@
                             <field name="product_country" attrs="{'readonly': True}"/>
                             <field name="manufacturer" attrs="{'readonly': True}"/>
                             <field name="product_warranty" attrs="{'readonly': True}"/>
-                            <field name="attribute_value_ids" widget="many2many_tags" store="True"/>
+                            <field name="attribute_value_ids" widget="many2many_tags"/>
                         </group>
                         <group string="Thông tin báo giá NCC">
                             <field name="vendor_id"/>

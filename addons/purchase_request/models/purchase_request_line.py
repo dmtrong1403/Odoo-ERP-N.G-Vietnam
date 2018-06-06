@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+from datetime import datetime
 
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
@@ -22,13 +23,13 @@ class purchase_request_line(models.Model):
     purchase_request_id = fields.Many2one("purchase.request", "Mã yêu cầu")
     purchase_request_name = fields.Char(string="Tên yêu cầu", store=False, related="purchase_request_id.name")
     product_uom = fields.Many2one("product.uom", "Đơn vị tính", related="product_id.uom_id", required=True)
-    product_qty = fields.Float("Số lượng", required=True)
+    product_qty = fields.Float("Số lượng", required=True, default=1)
     attribute_value_ids = fields.Many2many('product.attribute.value',
                                            string="Yêu cầu kỹ thuật")
-    deadline = fields.Date("Hạn chót", required=True)
+    deadline = fields.Date("Hạn chót", required=True, default=datetime.today())
     vendor = fields.Many2one("res.partner", "Nhà cung cấp")
     note = fields.Char("Ghi chú")
-    project_id = fields.Many2one(comodel_name="project.project", string="Dự án", required=True)
+    project_id = fields.Many2one(comodel_name="project.project", string="Dự án")
     state = fields.Selection("Tình trạng duyệt", related="purchase_request_id.state")
     line_no = fields.Integer(compute='_get_line_numbers', string='STT', readonly=False, default=False)
     is_finished = fields.Boolean(string="Hoàn thành", default=False)
@@ -76,8 +77,8 @@ class purchase_request_line(models.Model):
     @api.multi
     def unlink(self):
         for line in self:
-            if line.purchase_request_id.state not in ['draft', 'confirmed']:
-                raise UserError('Không thể xóa yêu cầu đã được duyệt.')
+            if line.purchase_request_id.state != 'draft':
+                raise UserError('Không thể xóa yêu cầu đã gửi.')
             else:
                 msg = _("Hủy bỏ yêu cầu %s ") % (line.product_id.display_name,)
                 line.purchase_request_id.message_post(body=msg)

@@ -71,7 +71,8 @@ class purchase_request(models.Model):
         is_finished = True
         for line in self.purchase_request_line_ids:
             if not line.is_finished:
-                raise exceptions.except_orm('Chưa hoàn thành các yêu cầu mua hàng: cần cập nhật trạng thái hoàn thành cho từng yêu cầu.')
+                raise exceptions.except_orm(
+                    'Chưa hoàn thành các yêu cầu mua hàng: cần cập nhật trạng thái hoàn thành cho từng yêu cầu.')
                 is_finished = False
                 break
         if is_finished:
@@ -83,6 +84,8 @@ class purchase_request(models.Model):
             if request.state != "draft":
                 raise exceptions.except_orm('Chỉ được phép xóa bản thảo.')
             else:
+                for line in self.purchase_request_line_ids:
+                    line.unlink()
                 return models.Model.unlink(self)
 
     @api.model

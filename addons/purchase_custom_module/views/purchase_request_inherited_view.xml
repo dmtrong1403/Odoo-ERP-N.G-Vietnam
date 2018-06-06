@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <record id="purchase_request_line_tree_inherited_view" model="ir.ui.view">
+        <!--<record id="purchase_request_line_tree_inherited_view" model="ir.ui.view">
             <field name="name">Bổ sung chi tiết yêu cầu - tree view</field>
             <field name="model">purchase.request.line</field>
             <field name="inherit_id" ref="purchase_request.purchase_request_line_tree_view"/>
             <field name="arch" type="xml">
-                <!--Bổ sung thông tin purchase xuất xứ, NSX, bảo hành-->
+                &lt;!&ndash;Bổ sung thông tin purchase xuất xứ, NSX, bảo hành&ndash;&gt;
                 <xpath expr="//field[@name='product_id']" position="after">
-                    <field name="product_country"/>
-                    <field name="manufacturer"/>
-                    <field name="product_warranty"/>
+                    <field name="product_country" invisible="1"/>
+                    <field name="manufacturer" invisible="1"/>
+                    <field name="product_warranty" invisible="1"/>
                 </xpath>
             </field>
-        </record>
+        </record>-->
         <record id="purchase_request_line_form_inherited_view" model="ir.ui.view">
             <field name="name">Bổ sung chi tiết yêu cầu - form view</field>
             <field name="model">purchase.request.line</field>
@@ -21,9 +21,9 @@
             <field name="arch" type="xml">
                 <!--Bổ sung thông tin purchase xuất xứ, NSX, bảo hành-->
                 <xpath expr="//field[@name='product_id']" position="after">
-                    <field name="product_country" attrs="{'readonly': True}" invisible="1"/>
-                    <field name="manufacturer" attrs="{'readonly': True}" invisible="1"/>
-                    <field name="product_warranty" attrs="{'readonly': True}" invisible="1"/>
+                    <field name="product_country" attrs="{'readonly': True}" />
+                    <field name="manufacturer" attrs="{'readonly': True}" />
+                    <field name="product_warranty" attrs="{'readonly': True}"/>
                 </xpath>
             </field>
         </record>

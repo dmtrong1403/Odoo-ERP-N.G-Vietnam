@@ -29,6 +29,7 @@
                             <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': True}"/>
                         </group>
                         <group string="Thông tin yêu cầu">
+                            <field name="purchase_request_id" attrs="{'readonly': True}"/>
                             <field name="product_qty" attrs="{'readonly': True}"/>
                             <field name="product_uom" attrs="{'readonly': True}"/>
                             <field name="deadline" attrs="{'readonly': True}"/>

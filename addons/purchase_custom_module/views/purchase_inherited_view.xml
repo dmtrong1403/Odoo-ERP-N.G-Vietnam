@@ -98,4 +98,8 @@
         <!--Rename menu Product Variant của model: purchase.order -->
         <field name="name">Sản phẩm</field>
     </record>
+    <record model="ir.ui.menu" id="purchase.menu_purchase_control">
+        <!--Rename menu Control của model: purchase.order -->
+        <field name="name">Theo dõi</field>
+    </record>
 </odoo>

@@ -111,6 +111,7 @@
 
         <menuitem id="purchase_request_main" name="Yêu cầu mua hàng"
                   groups="group_ycmh_user,group_ycmh_manager,purchase.group_purchase_user"
+                  web_icon="purchase_request,static/description/icon.png"
                   sequence="2"/>
         <menuitem id="purchase_request_sub" name="Quản lý yêu cầu"
                   parent="purchase_request_main"

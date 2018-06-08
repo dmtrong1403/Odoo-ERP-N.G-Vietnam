@@ -27,7 +27,7 @@ class purchase_request_line(models.Model):
     attribute_value_ids = fields.Many2many('product.attribute.value',
                                            string="Yêu cầu kỹ thuật")
     deadline = fields.Date("Hạn chót", required=True, default=datetime.today())
-    vendor = fields.Many2one("res.partner", "Nhà cung cấp")
+    vendor = fields.Char("Nhà cung cấp")
     note = fields.Char("Ghi chú")
     project_id = fields.Many2one(comodel_name="project.project", string="Dự án")
     state = fields.Selection("Tình trạng duyệt", related="purchase_request_id.state")

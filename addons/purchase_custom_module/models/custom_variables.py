@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 LIST_RATING = [
-    ('0', 'No Rating'),
-    ('1', 'Very Low'),
-    ('2', 'Low'),
-    ('3', 'Normal'),
-    ('4', 'High'),
-    ('5', 'Very High')
+    ('0', 'Chưa đánh giá'),
+    ('1', 'Rất kém'),
+    ('2', 'Kém'),
+    ('3', 'Bình thường'),
+    ('4', 'Yêu thích'),
+    ('5', 'Rất được yêu thích')
 ]
 
 LIST_STATUS = [

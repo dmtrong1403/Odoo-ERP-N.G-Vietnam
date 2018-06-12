@@ -19,19 +19,18 @@ class purchase_request_line(models.Model):
                 line_rec.line_no = line_num
                 line_num += 1
 
-    product_id = fields.Many2one("product.product", "Tên vật tư", required=True)
-    purchase_request_id = fields.Many2one("purchase.request", "Mã yêu cầu")
+    product_id = fields.Many2one(comodel_name="product.product", string="Tên vật tư", required=True)
+    purchase_request_id = fields.Many2one(comodel_name="purchase.request", string="Mã yêu cầu")
     purchase_request_name = fields.Char(string="Tên yêu cầu", store=False, related="purchase_request_id.name")
-    product_uom = fields.Many2one("product.uom", "Đơn vị tính", related="product_id.uom_id", required=True)
-    product_qty = fields.Float("Số lượng", required=True, default=1)
-    attribute_value_ids = fields.Many2many('product.attribute.value',
-                                           string="Yêu cầu kỹ thuật")
-    deadline = fields.Date("Hạn chót", required=True, default=datetime.today())
-    # Old version: vendor = fields.Many2one("res.partner")
-    vendor_name = fields.Char("Nhà cung cấp")
-    note = fields.Char("Ghi chú")
+    product_uom = fields.Many2one(comodel_name="product.uom", string="Đơn vị tính", related="product_id.uom_id",
+                                  required=True)
+    product_qty = fields.Float(string="Số lượng", required=True, default=1)
+    attribute_value_ids = fields.Many2many(comodel_name='product.attribute.value', string="Yêu cầu kỹ thuật")
+    deadline = fields.Date(string="Hạn chót", required=True, default=datetime.today())
+    vendor_name = fields.Char(string="NCC đề xuất")
+    note = fields.Char(string="Ghi chú")
     project_id = fields.Many2many(comodel_name="project.project", string="Dự án")
-    state = fields.Selection("Tình trạng duyệt", related="purchase_request_id.state")
+    state = fields.Selection(string="Tình trạng duyệt", related="purchase_request_id.state")
     line_no = fields.Integer(compute='_get_line_numbers', string='STT', readonly=False, default=False)
     is_finished = fields.Boolean(string="Hoàn thành", default=False)
 

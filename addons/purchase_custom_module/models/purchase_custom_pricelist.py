@@ -24,7 +24,7 @@ class purchase_custom_pricelist(models.Model):
     attribute_value_ids = fields.Many2many(comodel_name='product.attribute.value', string='Thông số kỹ thuật')
     price_unit = fields.Float(string='Giá', required=True, digits=dp.get_precision('Product Price'),
                               track_visibility="onchange")
-    number_of_delivery_day = fields.Integer('Thời gian giao hàng(ngày)', track_visibility="onchange")
+    number_of_delivery_day = fields.Integer(string='Thời gian giao hàng(ngày)', track_visibility="onchange")
     start_date = fields.Date(string="Ngày báo giá", required=True, track_visibility="onchange")
     end_date = fields.Date(string="Ngày hết hiệu lực", track_visibility="onchange")
 

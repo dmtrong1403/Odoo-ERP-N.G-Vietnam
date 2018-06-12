@@ -9,4 +9,4 @@ from . import custom_variables as cv
 class custom_crm(models.Model):
     _inherit = 'res.partner'
 
-    crm_rating = fields.Selection(cv.LIST_RATING, string='Đánh giá', track_visibility='always')
+    crm_rating = fields.Selection(cv.RATING_STATUS, string='Đánh giá', track_visibility='always')

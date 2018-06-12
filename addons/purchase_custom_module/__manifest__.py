@@ -2,11 +2,16 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'purchase_custom_module',
+    'name': 'Purchase Custom Module',
+    'summary': "Cập nhật module purchase",
     'version': '1.0',
     'description': """
-	Custom module developed by LZ dev Team
+        Module phát triển bởi Tony Đỗ và chuyên gia Nguyễn Thanh Thảo. 
+        Mục đích: cập nhật quy trình phân hệ purchase phù hợp với yêu cầu doanh nghiệp.
     """,
+    'website': 'https://github.com/dmtrong1403',
+    'author': "Tony Đỗ và chuyên gia Nguyễn Thanh Thảo",
+    'category': 'Custom modules',
     'depends': ['base', 'purchase', 'product', 'purchase_request'],
     'data': [
         'security/purchase_security.xml',
@@ -19,7 +24,6 @@
         'views/purchase_request_inherited_view.xml',
         'report/purchase_report_template.xml',
     ],
-    # only loaded in demonstration mode
     'installable': True,
     'application': True,
     'auto_install': False,

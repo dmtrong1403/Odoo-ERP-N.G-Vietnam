@@ -27,9 +27,9 @@ class purchase_request_line(models.Model):
     attribute_value_ids = fields.Many2many('product.attribute.value',
                                            string="Yêu cầu kỹ thuật")
     deadline = fields.Date("Hạn chót", required=True, default=datetime.today())
-    vendor = fields.Char("Nhà cung cấp")
+    vendor_name = fields.Char("Nhà cung cấp")
     note = fields.Char("Ghi chú")
-    project_id = fields.Many2one(comodel_name="project.project", string="Dự án")
+    project_id = fields.Many2many(comodel_name="project.project", string="Dự án")
     state = fields.Selection("Tình trạng duyệt", related="purchase_request_id.state")
     line_no = fields.Integer(compute='_get_line_numbers', string='STT', readonly=False, default=False)
     is_finished = fields.Boolean(string="Hoàn thành", default=False)

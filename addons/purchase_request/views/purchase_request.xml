@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
+        <record id="view_purchase_request_filter" model="ir.ui.view">
+            <field name="name">purchase.request.select</field>
+            <field name="model">purchase.request</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Request">
+                    <field name="name" string="Nhãn yêu cầu"/>
+                    <field name="tag_ids" string="Tag name"/>
+                </search>
+            </field>
+        </record>
         <record id="purchase_request_view_tree" model="ir.ui.view">
             <field name="name">Purchase request tree view</field>
             <field name="model">purchase.request</field>
@@ -99,11 +109,13 @@
                 </search>
             </field>
         </record>
+
         <record id="purchase_request_act" model="ir.actions.act_window">
             <field name="name">Quản lý yêu cầu</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.request</field>
             <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_purchase_request_filter"/>
         </record>
 
         <record id="purchase_request_prd_act" model="ir.actions.act_window">

@@ -32,7 +32,7 @@ class custom_purchase_order(models.Model):
                 result.append(
                     {'product_id': line.product_id, 'product_uom': line.product_uom, 'product_qty': line.product_qty,
                      'price_unit': 0, 'attribute_value_ids': line.attribute_value_ids, 'date_planned': line.deadline,
-                     'name': line.product_id.display_name})
+                     'name': line.product_id.display_name, 'note': line.note})
             self.tag_ids = self.purchase_request_id.tag_ids
             self.order_line = result
 
@@ -61,7 +61,7 @@ class custom_purchase_orderline(models.Model):
                                       related="product_id.product_country")
     attribute_value_ids = fields.Many2many('product.attribute.value', string='Thông số kỹ thuật')
     line_no = fields.Integer(compute='_get_line_numbers', string='STT', readonly=False, default=False)
-
+    note = fields.Char("Ghi chú")
     @api.onchange("product_id")
     def change_prod_attr(self):
         if self.product_id:

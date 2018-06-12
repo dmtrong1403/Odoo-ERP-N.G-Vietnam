@@ -68,16 +68,9 @@
                                         <field name="is_finished" groups="purchase.group_purchase_user"/>
                                     </tree>
                                 </field>
-                                <h1>
-                                    <label for="note" string="Lưu ý"/>
-                                </h1>
+                                <label for="note" string="Lưu ý"/>
                                 <field name="note" placeholder="Ghi chú bổ sung yêu cầu mua hàng"/>
                             </page>
-                            <!--<page string="Ghi chú">-->
-                            <!--<group>-->
-                            <!--<field name="note"/>-->
-                            <!--</group>-->
-                            <!--</page>-->
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

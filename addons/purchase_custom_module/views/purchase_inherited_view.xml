@@ -47,6 +47,9 @@
                 <field name="tag_ids" widget="many2many_tags"/>
                 <field name="purchase_request_id"/>
             </xpath>
+            <xpath expr="//field[@name='taxes_id']" position="after">
+                <field name="note"/>
+            </xpath>
             <!--Bổ sung thông tin trạng thái hợp đồng-->
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="contract_status" widget="selection"/>

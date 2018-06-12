@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "purchase_request",
-    'summary': "Module yêu cầu mua sắm",
+    'name': "Purchase Request",
+    'summary': "Yêu cầu mua sắm",
     'description': """
-        Module được phát triển bởi Livezone development team
+        Module phát triển bởi Tony Đỗ và chuyên gia Nguyễn Thanh Thảo. 
+        Mục đích: phát triển menu yêu cầu mua hàng cho đối tượng người dùng các phòng ban và phòng purchasing.
     """,
-    'author': "Livezone development team",
-    # 'website': "http://www.quangvinh86.domain",
-    'category': 'Custom module',
-    'version': '0.1',
-    # any module necessary for this one to work correctly
+    'website': 'https://github.com/dmtrong1403',
+    'author': "Tony Đỗ và chuyên gia Nguyễn Thanh Thảo",
+    'category': 'Custom modules',
     'depends': ['base', 'hr', 'project'],
-    # always loaded
     'data': [
         'security/purchase_security.xml',
         'security/ir.model.access.csv',
@@ -19,7 +17,6 @@
         'views/purchase_request_line.xml',
         'views/workflow.xml',
     ],
-    # only loaded in demonstration mode
     'installable': True,
     'application': True,
     'auto_install': False,

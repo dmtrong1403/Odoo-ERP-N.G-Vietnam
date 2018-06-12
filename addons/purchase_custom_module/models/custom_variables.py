@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-LIST_RATING = [
+RATING_STATUS = [
     ('0', 'Chưa đánh giá'),
     ('1', 'Rất kém'),
     ('2', 'Kém'),
@@ -9,8 +9,17 @@ LIST_RATING = [
     ('5', 'Rất được yêu thích')
 ]
 
-LIST_STATUS = [
+CONTRACT_STATUS = [
     ('0', 'Đang soạn'),
     ('1', 'Đang trình ký'),
     ('2', 'Đã nhận bản cứng')
+]
+
+PO_STATUS = [
+    ('draft', 'Bản thảo'),
+    ('sent', 'Bản thảo được gửi'),
+    ('to approve', 'Bản thảo chờ duyệt'),
+    ('purchase', 'Đơn hàng'),
+    ('done', 'Hoàn thành'),
+    ('cancel', 'Hủy bỏ')
 ]

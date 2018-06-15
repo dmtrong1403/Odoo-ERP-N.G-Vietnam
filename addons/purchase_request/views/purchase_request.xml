@@ -16,7 +16,7 @@
             <field name="model">purchase.request</field>
             <field name="arch" type="xml">
                 <tree default_order='write_date desc' decoration-muted="state=='done'"
-                      decoration-danger="write_date &gt; current_date">
+                      decoration-danger="is_seen==False">
                     <field name="name"/>
                     <field name="company_id"/>
                     <field name="department_id"/>
@@ -26,6 +26,7 @@
                     <field name="propose"/>
                     <field name="state"/>
                     <field name="write_date" string="Cập nhật lần cuối"/>
+                    <field name="is_seen" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -50,12 +51,19 @@
                         <button name="action_done" type="object"
                                 string="Hoàn thành" states="received"
                                 class="oe_highlight" groups="purchase.group_purchase_user"/>
+                        <button string="Xác nhận cập nhật"
+                                type="object"
+                                name="action_seen"
+                                attrs="{'invisible':[('is_seen','=',True)]}"
+                                class="oe_highlight" groups="purchase.group_purchase_user"
+                        />
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="project_ids" widget="many2many_tags"/>
+                                <field name="is_seen"/>
                             </group>
                             <group>
                                 <field name="propose"/>

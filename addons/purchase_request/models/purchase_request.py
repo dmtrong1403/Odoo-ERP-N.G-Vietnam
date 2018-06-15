@@ -49,6 +49,7 @@ class purchase_request(models.Model):
                                                 inverse_name="purchase_request_id", string="Chi tiết sản phẩm",
                                                 required=True)
     state = fields.Selection(PR_STATUS, string="Trạng thái xét duyệt", default="draft", track_visibility="onchange")
+    is_seen = fields.Boolean(default=True)
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE(name)",
@@ -70,6 +71,10 @@ class purchase_request(models.Model):
     @api.multi
     def action_receive(self):
         self.state = "received"
+
+    @api.multi
+    def action_seen(self):
+        self.is_seen = True
 
     @api.multi
     def action_done(self):
@@ -98,3 +103,9 @@ class purchase_request(models.Model):
         if vals.get("name", "Mới") == "Mới":
             vals["name"] = self.env["ir.sequence"].next_by_code("purchase.request")
         return super(purchase_request, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if "is_seen" not in vals:
+            vals["is_seen"] = False
+        return super(purchase_request, self).write(vals)

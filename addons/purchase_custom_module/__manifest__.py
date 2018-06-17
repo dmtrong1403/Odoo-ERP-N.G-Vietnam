@@ -21,7 +21,6 @@
         'views/purchase_inherited_view.xml',
         'views/hide_items.xml',
         'views/purchase_custom_pricelist.xml',
-        'views/purchase_request_inherited_view.xml',
         'report/purchase_report_template.xml',
     ],
     'installable': True,

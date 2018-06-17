@@ -7,4 +7,4 @@ from . import purchase_inherited
 from . import custom_variables
 from . import account_inherited
 from . import purchase_custom_pricelist
-from . import purchase_request_inherited
+# from . import purchase_request_inherited

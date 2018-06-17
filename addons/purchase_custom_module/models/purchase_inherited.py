@@ -51,10 +51,8 @@ class custom_purchase_orderline(models.Model):
     discount = fields.Float(
         string="Chiết khấu (%)", digits=dp.get_precision("Discount"),
     )
-    manufacturer = fields.Many2one(comodel_name="res.partner", string="Hãng sản xuất",
-                                   related="product_id.manufacturer")
-    product_country = fields.Many2one(comodel_name="res.country", string="Xuất xứ", ondelete="restrict",
-                                      related="product_id.product_country")
+    manufacturer = fields.Many2one(comodel_name="res.partner", string="Hãng sản xuất")
+    product_country = fields.Many2one(comodel_name="res.country", string="Xuất xứ", ondelete="restrict")
     attribute_value_ids = fields.Many2many(comodel_name="product.attribute.value", string="Thông số kỹ thuật")
     line_no = fields.Integer(compute="_get_line_numbers", string="STT", readonly=False, default=False)
     note = fields.Char(string="Ghi chú")

@@ -12,4 +12,29 @@
             </xpath>
         </field>
     </record>
+    <!--Bổ sung filter cho search view của model: res.partner -->
+    <!-- Add custom filter theo rating -->
+    <record id="view_res_partner_filter" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="check_five_star" string="NCC rất được yêu thích"
+                            domain="[('crm_rating','=', '5')]"/>
+                    <filter name="check_four_star" string="NCC được yêu thích"
+                            domain="[('crm_rating','=', '4')]"/>
+                </search>
+            </field>
+    </record>
+    <!-- Add field rating vào tree view-->
+    <record id="tree_view_crm_custom" model="ir.ui.view">
+        <field name="name">crm.custom.tree.view.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!--Bổ sung thông tin đánh giá nhà cung cấp-->
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="crm_rating" string="Đánh giá"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

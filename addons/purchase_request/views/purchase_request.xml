@@ -68,7 +68,7 @@
                         <group>
                             <group>
                                 <field name="project_ids" widget="many2many_tags"/>
-                                <field name="is_seen"/>
+                                <field name="is_seen" invisible="1"/>
                             </group>
                             <group>
                                 <field name="propose"/>

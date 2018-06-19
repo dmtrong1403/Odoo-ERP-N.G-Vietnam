@@ -71,7 +71,7 @@
             <xpath expr="//field[@name='product_id']" position="after">
                 <field name="product_country" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
                 <field name="manufacturer" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
-                <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}"/>
+                <field name="attribute_value_ids" widget="many2many_tags" attrs="{'readonly': True}"/>
             </xpath>
             <!--Bổ sung STT item theo từng line-->
             <xpath expr="//field[@name='product_id']" position="before">

@@ -48,7 +48,8 @@
             </xpath>
             <!--Edit string của product_uom-->
             <xpath expr="//tree/field[@name='product_uom']" position="replace">
-                <field name="product_uom" groups="product.group_uom" attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}" string="ĐVT"/>
+                <field name="product_uom" groups="product.group_uom"
+                       attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}" string="ĐVT"/>
             </xpath>
         </field>
     </record>
@@ -164,6 +165,38 @@
                                attrs="{'invisible':[('type', '!=', 'service')]}"/>
                     </group>
                 </page>
+            </xpath>
+        </field>
+    </record>
+    <!--Ẩn thông tin thừa tab tồn kho-->
+    <record id="product_form_view_hide" model="ir.ui.view">
+        <field name="name">product.template.stock.property.form.inherit.hide</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <!--Ẩn thông tin Định tuyến-->
+            <xpath expr="//group[@name='inventory']/group[1]" position="replace">
+                <group invisible="1">
+                    <field name="route_ids" widget="many2many_checkboxes"
+                           attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}"/>
+                    <field name="route_from_categ_ids" widget="many2many_tags" readonly="1"
+                           attrs="{'invisible':[('route_from_categ_ids', '=', [])]}"/>
+                </group>
+            </xpath>
+            <!--Ẩn thông tin trọng lượng & thể tích-->
+            <xpath expr="//group[@name='group_lots_and_weight']" position="replace">
+                <group name="group_lots_and_weight" invisible="1">
+                    <label for="weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"/>
+                    <div class="o_row" name="weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                        <field name="weight"/>
+                    </div>
+                    <field name="tracking" widget="radio" attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}"
+                           groups="stock.group_production_lot"/>
+                    <label for="volume" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"/>
+                    <div class="o_row" name="volume" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                        <field name="volume" string="Volume"/>
+                    </div>
+                </group>
             </xpath>
         </field>
     </record>

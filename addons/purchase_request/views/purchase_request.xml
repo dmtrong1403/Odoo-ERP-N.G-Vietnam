@@ -16,8 +16,8 @@
             <field name="model">purchase.request</field>
             <field name="arch" type="xml">
                 <tree default_order='write_date desc'
-                      decoration-muted="state=='done' or state=='cancelled'"
-                      decoration-danger="is_seen==False and state=='received'">
+                      decoration-muted="state=='done' or state=='cancelled' and is_seen==True"
+                      decoration-danger="is_seen==False and state in ['received', 'cancelled']">
                     <field name="name"/>
                     <field name="company_id"/>
                     <field name="department_id"/>
@@ -39,7 +39,9 @@
                     <header>
                         <button name="action_draft" type="object"
                                 string="Hủy yêu cầu"
-                                states="confirmed, approved, done"/>
+                                states="confirmed, approved, done"
+                                confirm="Bạn muốn hủy yêu cầu mua hàng ?"
+                        />
                         <button name="action_confirm" type="object"
                                 string="Gửi yêu cầu" states="draft"/>
                         <button name="action_approve" type="object"
@@ -61,14 +63,16 @@
                                 name="action_cancel"
                                 type="object"
                                 states="approved,received"
-                                groups="purchase_request.group_ycmh_user"/>
+                                groups="purchase_request.group_ycmh_user"
+                                confirm="Bạn muốn hủy yêu cầu mua hàng ?"
+                        />
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="project_ids" widget="many2many_tags"/>
-                                <field name="is_seen" invisible="1"/>
+                                <field name="is_seen"/>
                             </group>
                             <group>
                                 <field name="propose"/>

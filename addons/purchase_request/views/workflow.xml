@@ -38,6 +38,12 @@
             <field name="kind">function</field>
             <field name="action">action_done()</field>
         </record>
+        <record model="workflow.activity" id="cancelled">
+            <field name="name">Cancelled</field>
+            <field name="wkf_id" ref="wkf_session"/>
+            <field name="kind">function</field>
+            <field name="action">action_cancel()</field>
+        </record>
 
         <record model="workflow.transition" id="session_draft_to_confirmed">
             <field name="act_from" ref="draft"/>
@@ -49,20 +55,30 @@
             <field name="act_to" ref="approved"/>
             <field name="signal">approve</field>
         </record>
-        <record model="workflow.transition" id="session_approved_to_received">
-            <field name="act_from" ref="approved"/>
-            <field name="act_to" ref="received"/>
-            <field name="signal">receive</field>
-        </record>
         <record model="workflow.transition" id="session_confirmed_to_draft">
             <field name="act_from" ref="confirmed"/>
             <field name="act_to" ref="draft"/>
             <field name="signal">draft</field>
         </record>
+        <record model="workflow.transition" id="session_approved_to_received">
+            <field name="act_from" ref="approved"/>
+            <field name="act_to" ref="received"/>
+            <field name="signal">receive</field>
+        </record>
         <record model="workflow.transition" id="session_received_to_done">
             <field name="act_from" ref="received"/>
             <field name="act_to" ref="done"/>
             <field name="signal">done</field>
+        </record>
+        <record model="workflow.transition" id="session_received_to_cancelled">
+            <field name="act_from" ref="received"/>
+            <field name="act_to" ref="cancelled"/>
+            <field name="signal">cancel</field>
+        </record>
+        <record model="workflow.transition" id="session_approved_to_cancelled">
+            <field name="act_from" ref="approved"/>
+            <field name="act_to" ref="cancelled"/>
+            <field name="signal">cancel</field>
         </record>
     </data>
 </odoo>

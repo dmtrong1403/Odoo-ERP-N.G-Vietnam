@@ -15,7 +15,8 @@
             <field name="name">Purchase request tree view</field>
             <field name="model">purchase.request</field>
             <field name="arch" type="xml">
-                <tree default_order='write_date desc' decoration-muted="state=='done'"
+                <tree default_order='write_date desc'
+                      decoration-muted="state=='done' or state=='cancelled'"
                       decoration-danger="is_seen==False and state=='received'">
                     <field name="name"/>
                     <field name="company_id"/>
@@ -55,8 +56,12 @@
                                 type="object"
                                 name="action_seen"
                                 attrs="{'invisible':[('is_seen','=',True)]}"
-                                class="oe_highlight" groups="purchase.group_purchase_user"
-                        />
+                                class="oe_highlight" groups="purchase.group_purchase_user"/>
+                        <button string="Hủy yêu cầu"
+                                name="action_cancel"
+                                type="object"
+                                states="approved,received"
+                                groups="purchase_request.group_ycmh_user"/>
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>

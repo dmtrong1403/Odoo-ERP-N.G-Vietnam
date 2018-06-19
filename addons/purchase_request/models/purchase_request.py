@@ -7,7 +7,8 @@ PR_STATUS = [
     ("confirmed", "Đã gửi"),
     ("approved", "Đã duyệt"),
     ("received", "Đã nhận yêu cầu"),
-    ("done", "Hoàn thành")
+    ("done", "Hoàn thành"),
+    ("cancelled", "Đã hủy")
 ]
 
 
@@ -71,6 +72,10 @@ class purchase_request(models.Model):
     @api.multi
     def action_receive(self):
         self.state = "received"
+
+    @api.multi
+    def action_cancel(self):
+        self.state = "cancelled"
 
     @api.multi
     def action_seen(self):

@@ -52,7 +52,7 @@
                 ['&amp;',
                 ('company_id','=',user.company_id.id),
                 '|',
-                ('state', 'in', ['approved','received','done']),
+                ('state', 'in', ['approved','received','done','cancelled']),
                 ('create_uid','=',user.id)
                 ]
             </field>

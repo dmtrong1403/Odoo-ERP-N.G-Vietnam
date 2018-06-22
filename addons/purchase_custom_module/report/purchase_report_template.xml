@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="assets_common" name="purchase_custom_module assets" inherit_id="report.assets_common">
+        <xpath expr="." position="inside">
+            <link href="/purchase_request/static/src/css/test.css" rel="stylesheet"/>
+        </xpath>
+    </template>
     <!--Override QWEB Report Purchase RFQ của module: Purchase  -->
     <template id="report_request_quotation_inherit" inherit_id="purchase.report_purchasequotation_document">
         <!--Bổ sung thông tin RFQ report-->
@@ -35,11 +40,11 @@
                         <span t-field="o.name"/>
                     </h2>
 
-                    <table class="table table-condensed">
+                    <table class="table table-condensed table_border">
                         <thead>
                             <tr style="white-space: nowrap;">
                                 <th>STT</th>
-                                <th>
+                                <th style="max-width:200px;">
                                     <strong>Sản phẩm</strong>
                                 </th>
                                 <th>
@@ -53,6 +58,9 @@
                                 </th>
                                 <th class="text-right">
                                     <strong>Số lượng</strong>
+                                </th>
+                                <th>
+                                    <strong>Ghi chú</strong>
                                 </th>
                             </tr>
                         </thead>
@@ -79,6 +87,9 @@
                                 <td style="white-space: nowrap;" class="text-right">
                                     <span t-field="order_line.product_qty"/>
                                     <span t-field="order_line.product_uom" groups="product.group_uom"/>
+                                </td>
+                                <td>
+                                    <span t-field="order_line.note"/>
                                 </td>
                             </tr>
                         </tbody>

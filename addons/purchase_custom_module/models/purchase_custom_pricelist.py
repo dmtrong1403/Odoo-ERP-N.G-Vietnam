@@ -16,15 +16,17 @@ class purchase_custom_pricelist(models.Model):
     product_id = fields.Many2one(comodel_name="product.product", string="Sản phẩm", required=True)
     product_qty = fields.Float(string="Số lượng", required=True)
     product_uom = fields.Many2one(comodel_name="product.uom", string="ĐVT", required=True)
-    product_warranty = fields.Integer(string="Bảo Hành(tháng)")
-    manufacturer = fields.Many2one(comodel_name="res.partner", string="Hãng sản xuất")
+    product_warranty = fields.Integer(string="BH(tháng)")
+    manufacturer = fields.Many2one(comodel_name="res.partner", string="HSX")
     product_country = fields.Many2one(comodel_name="res.country", string="Xuất xứ", ondelete="restrict")
     attribute_value_ids = fields.Many2many(comodel_name="product.attribute.value", string="Thông số kỹ thuật")
     price_unit = fields.Float(string="Giá", required=True, digits=dp.get_precision("Product Price"),
                               track_visibility="onchange")
-    number_of_delivery_day = fields.Integer(string="Thời gian giao hàng(ngày)", track_visibility="onchange")
+    number_of_delivery_day = fields.Integer(string="TG giao hàng", track_visibility="onchange")
     start_date = fields.Date(string="Ngày báo giá", required=True, track_visibility="onchange")
     end_date = fields.Date(string="Ngày hết hiệu lực", track_visibility="onchange")
+    po_tag = fields.Many2one(comodel_name="purchase.order", string="Nguồn")
+    note = fields.Char(string="Ghi chú")
 
     # Work arround: force khi chọn tên nhà cung cấp tự get product attribute_value_ids
     @api.onchange("product_id", "vendor_id")

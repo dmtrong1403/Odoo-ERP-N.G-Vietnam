@@ -11,6 +11,7 @@ class custom_product_product(models.Model):
     manufacturer = fields.Many2one(comodel_name="res.partner", string="Hãng sản xuất", track_visibility="onchange")
     product_country = fields.Many2one(comodel_name="res.country", string="Xuất xứ", ondelete="restrict",
                                       track_visibility="onchange")
+    po_tag = fields.Many2one(comodel_name="purchase.order", string="Purchase Order Tag", track_visibility="onchange")
     custom_pricelist_ids = fields.One2many(comodel_name="purchase.custom.pricelist", inverse_name="product_id",
                                            string="Bảng giá nhà cung cấp")
 

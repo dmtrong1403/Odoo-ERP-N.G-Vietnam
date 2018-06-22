@@ -5,13 +5,15 @@
             <field name="name">Chi tiết yêu cầu</field>
             <field name="model">purchase.request.line</field>
             <field name="arch" type="xml">
-                <tree decoration-muted="is_finished==True" create="false" edit="false">
+                <tree decoration-muted="is_finished==True" create="false" edit="false"
+                      decoration-danger="current_date &gt; deadline">
                     <field name="purchase_request_id"/>
                     <field name="product_id"/>
                     <field name="product_uom"/>
                     <field name="product_qty"/>
                     <field name="attribute_value_ids" widget="many2many_tags"/>
                     <field name="deadline"/>
+                    <field name="state"/>
                     <field name="vendor_name"/>
                     <field name="note"/>
                     <field name="is_finished" invisible="1"/>

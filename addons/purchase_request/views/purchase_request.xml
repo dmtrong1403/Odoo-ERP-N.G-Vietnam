@@ -26,6 +26,7 @@
                     <field name="tag_ids" widget="many2many_tags"/>
                     <field name="propose"/>
                     <field name="state"/>
+                    <field name="receiver"/>
                     <field name="write_date" string="Cập nhật lần cuối"/>
                     <field name="is_seen" invisible="1"/>
                 </tree>
@@ -72,7 +73,7 @@
                         <group>
                             <group>
                                 <field name="project_ids" widget="many2many_tags"/>
-                                <field name="is_seen"  invisible="1"/>
+                                <field name="is_seen" invisible="1"/>
                             </group>
                             <group>
                                 <field name="propose"/>

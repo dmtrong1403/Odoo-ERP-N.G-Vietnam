@@ -51,6 +51,7 @@ class purchase_request(models.Model):
                                                 required=True)
     state = fields.Selection(PR_STATUS, string="Trạng thái xét duyệt", default="draft", track_visibility="onchange")
     is_seen = fields.Boolean(default=True)
+    receiver = fields.Many2one(comodel_name="res.users", string="Người tiếp nhận")
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE(name)",
@@ -71,6 +72,7 @@ class purchase_request(models.Model):
 
     @api.multi
     def action_receive(self):
+        self.receiver = self.get_current_user()
         self.state = "received"
 
     @api.multi

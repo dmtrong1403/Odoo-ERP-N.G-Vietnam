@@ -31,6 +31,16 @@ class custom_purchase_order(models.Model):
             self.tag_ids = self.purchase_request_id.tag_ids
             self.order_line = result
 
+    # Override function name_get
+    @api.multi
+    @api.depends('name', 'partner_ref')
+    def name_get(self):
+        result = []
+        for po in self:
+            name = po.name
+            result.append((po.id, name))
+        return result
+
 
 class custom_purchase_orderline(models.Model):
     _inherit = "purchase.order.line"

@@ -2,7 +2,7 @@
 <odoo>
     <template id="assets_common" name="purchase_custom_module assets" inherit_id="report.assets_common">
         <xpath expr="." position="inside">
-            <link href="/purchase_request/static/src/css/test.css" rel="stylesheet"/>
+            <link href="/purchase_request/static/src/css/custom.css" rel="stylesheet"/>
         </xpath>
     </template>
     <!--Override QWEB Report Purchase RFQ của module: Purchase  -->

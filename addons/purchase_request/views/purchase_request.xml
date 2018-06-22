@@ -3,7 +3,7 @@
     <data>
         <template id="assets_backend" name="project assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/purchase_request/static/src/css/test.css"/>
+                <link rel="stylesheet" href="/purchase_request/static/src/css/custom.css"/>
             </xpath>
         </template>
         <record id="view_purchase_request_filter" model="ir.ui.view">

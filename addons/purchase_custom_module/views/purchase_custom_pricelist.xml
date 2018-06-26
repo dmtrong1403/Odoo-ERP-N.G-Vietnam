@@ -37,6 +37,7 @@
                             <field name="start_date"/>
                             <field name="end_date"/>
                             <field name="po_tag"/>
+                            <field name="eco_term"/>
                         </group>
                         <group string="Thông tin báo giá NCC">
                             <field name="vendor_id"/>

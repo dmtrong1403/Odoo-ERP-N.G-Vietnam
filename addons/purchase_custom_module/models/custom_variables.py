@@ -23,3 +23,21 @@ PO_STATUS = [
     ('done', 'Hoàn thành'),
     ('cancel', 'Hủy bỏ')
 ]
+
+# Phần này xổ xuống 11 trường: EXW, FCA, FOB, FAS, CFR, CIF, CPT, CIP, DAF, DES, DEQ, DDU, DDP
+
+ECO_TERM = [
+    ('EXW', 'EXW'),
+    ('FCA', 'FCA'),
+    ('FOB', 'FOB'),
+    ('FAS', 'FAS'),
+    ('CFR', 'CFR'),
+    ('CIF', 'CIF'),
+    ('CPT', 'CPT'),
+    ('CIP', 'CIP'),
+    ('DAF', 'DAF'),
+    ('DES', 'DES'),
+    ('DEQ', 'DEQ'),
+    ('DDU', 'DDU'),
+    ('DDP', 'DDP')
+]

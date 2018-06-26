@@ -23,9 +23,4 @@ class custom_product_product(models.Model):
 
 class custom_product_attribute_value(models.Model):
     _inherit = "product.attribute.value"
-
-    @api.multi
-    def name_get(self):
-        if not self._context.get('show_attribute', True):  # TDE FIXME: not used
-            return super(custom_product_attribute_value, self).name_get()
-        return sorted([(value.id, "%s: %s" % (value.attribute_id.name, value.name)) for value in self])
+    _order = "name"

@@ -22,7 +22,9 @@ class PurchaseOrder(models.Model):
     @api.depends('order_line.price_total')
     def _amount_all(self):
         for order in self:
+
             amount_untaxed = amount_tax = 0.0
+
             for line in order.order_line:
                 amount_untaxed += line.price_subtotal
                 # FORWARDPORT UP TO 10.0

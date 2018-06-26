@@ -4,8 +4,7 @@
 import odoo.addons.decimal_precision as dp
 
 from odoo import fields, models, api
-
-
+from . import custom_variables as cv
 
 
 class purchase_custom_pricelist(models.Model):
@@ -13,14 +12,13 @@ class purchase_custom_pricelist(models.Model):
     _inherit = ["mail.thread", "ir.needaction_mixin"]
     _rec_name = "name"
 
-
-    @api.depends('taxes_id', 'price_unit', 'product_qty','amount_total')
+    @api.depends('taxes_id', 'price_unit', 'product_qty', 'amount_total')
     def _compute_price_total(self):
         for record in self:
-            record.taxes = record.taxes_id.compute_all(record.price_unit,record.currency_id, record.product_qty)
+            record.taxes = record.taxes_id.compute_all(record.price_unit, record.currency_id, record.product_qty)
             record.update({
                 'price_total': record.taxes['total_included'],
-                #Code by HaGiang-er
+                # Code by HaGiang-er
                 'amount_total': record.taxes['total_included'] * record.product_qty
             })
 
@@ -34,12 +32,13 @@ class purchase_custom_pricelist(models.Model):
     product_country = fields.Many2one(comodel_name="res.country", string="Xuất xứ", ondelete="restrict")
     attribute_value_ids = fields.Many2many(comodel_name="product.attribute.value", string="Thông số kỹ thuật")
     price_unit = fields.Monetary(string="Đơn giá", required=True, digits=dp.get_precision("Product Price"),
-                              track_visibility="onchange")
+                                 track_visibility="onchange")
     number_of_delivery_day = fields.Integer(string="TG giao hàng", track_visibility="onchange")
     start_date = fields.Date(string="Ngày báo giá", required=True, track_visibility="onchange")
     end_date = fields.Date(string="Ngày hết hiệu lực", track_visibility="onchange")
     po_tag = fields.Many2one(comodel_name="purchase.order", string="Nguồn")
     note = fields.Char(string="Ghi chú")
+    eco_term = fields.Selection(cv.ECO_TERM, string='Điều kiện thương mại', track_visibility='onchange')
     taxes_id = fields.Many2many('account.tax', string='Thuế',
                                 domain=['|', ('active', '=', False), ('active', '=', True)])
     price_subtotal = fields.Monetary(string='GT trước thuế', store=True)
@@ -47,7 +46,8 @@ class purchase_custom_pricelist(models.Model):
     price_total = fields.Monetary(string='GT sau thuế', store=True, compute="_compute_price_total")
     amount_total = fields.Monetary(string='Thành tiền', store=True, compute="_compute_price_total")
 
-    currency_id = fields.Many2one('res.currency', 'Currency', required=True, default=lambda self: self.env.user.company_id.currency_id.id)
+    currency_id = fields.Many2one('res.currency', 'Currency', required=True,
+                                  default=lambda self: self.env.user.company_id.currency_id.id)
 
     # Hai Duong lam an chan vl
     # Work arround: force khi chọn tên nhà cung cấp tự get product attribute_value_ids

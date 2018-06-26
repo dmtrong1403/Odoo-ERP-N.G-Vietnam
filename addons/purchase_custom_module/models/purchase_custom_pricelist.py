@@ -4,6 +4,7 @@
 import odoo.addons.decimal_precision as dp
 
 from odoo import fields, models, api
+from . import custom_variables as cv
 
 
 class purchase_custom_pricelist(models.Model):
@@ -27,6 +28,7 @@ class purchase_custom_pricelist(models.Model):
     end_date = fields.Date(string="Ngày hết hiệu lực", track_visibility="onchange")
     po_tag = fields.Many2one(comodel_name="purchase.order", string="Nguồn")
     note = fields.Char(string="Ghi chú")
+    eco_term = fields.Selection(cv.ECO_TERM, string='Điều kiện thương mại', track_visibility='onchange')
 
     # Work arround: force khi chọn tên nhà cung cấp tự get product attribute_value_ids
     @api.onchange("product_id", "vendor_id")

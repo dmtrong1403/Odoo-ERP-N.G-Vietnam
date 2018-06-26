@@ -30,6 +30,7 @@ class purchase_custom_pricelist(models.Model):
     note = fields.Char(string="Ghi chú")
     eco_term = fields.Selection(cv.ECO_TERM, string='Điều kiện thương mại', track_visibility='onchange')
 
+    # Hai Duong lam an chan vl
     # Work arround: force khi chọn tên nhà cung cấp tự get product attribute_value_ids
     @api.onchange("product_id", "vendor_id")
     def change_prod_attr(self):

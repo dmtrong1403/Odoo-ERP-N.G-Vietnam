@@ -45,4 +45,16 @@
             </form>
         </field>
     </record>
+
+    <!--DM Hà Giang -->
+    <record id="view_product_attribute_value_filter" model="ir.ui.view">
+        <field name="name">product.attribute.value.filter</field>
+        <field name="model">product.attribute.value</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Attribute">
+                <field name="attribute_id" string="Thuộc tính"/>
+                <field name="name" string="Giá trị"/>
+            </search>
+        </field>
+    </record>'
 </odoo>

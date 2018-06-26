@@ -49,6 +49,7 @@ class purchase_custom_pricelist(models.Model):
 
     currency_id = fields.Many2one('res.currency', 'Currency', required=True, default=lambda self: self.env.user.company_id.currency_id.id)
 
+    # Hai Duong lam an chan vl
     # Work arround: force khi chọn tên nhà cung cấp tự get product attribute_value_ids
     @api.onchange("product_id", "vendor_id")
     def change_prod_attr(self):

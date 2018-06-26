@@ -47,11 +47,12 @@
                                 <field name="product_qty" style="width: 20%"/>
                                 <field name="product_uom" style="width: 80%"/>
                             </div>
-                            <field name="price_unit"/>
-                            <field name="taxes_id" widget="many2many_tags"/>
-                            <field name="price_total"/>
-                            <field name="amount_total"/>
+                            <field name="price_unit" widget="monetary"/>
+                            <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]"/>
+                            <field name="price_total" widget="monetary"/>
+                            <field name="amount_total" widget="monetary"/>
                             <field name="eco_term"/>
+                            <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
                     <div class="oe_chatter">

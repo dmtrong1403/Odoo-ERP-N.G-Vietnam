@@ -24,3 +24,4 @@ class custom_product_product(models.Model):
 class custom_product_attribute_value(models.Model):
     _inherit = "product.attribute.value"
     _order = "name"
+    _rec_name = "attribute_id"

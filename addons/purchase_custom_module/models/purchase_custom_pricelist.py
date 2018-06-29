@@ -12,7 +12,7 @@ class purchase_custom_pricelist(models.Model):
     _inherit = ["mail.thread", "ir.needaction_mixin"]
     _rec_name = "name"
 
-    @api.depends('taxes_id', 'price_unit', 'product_qty', 'amount_total')
+    @api.depends('taxes_id', 'price_unit', 'product_qty')
     def _compute_price_total(self):
         for record in self:
             record.taxes = record.taxes_id.compute_all(record.price_unit, record.currency_id, record.product_qty)

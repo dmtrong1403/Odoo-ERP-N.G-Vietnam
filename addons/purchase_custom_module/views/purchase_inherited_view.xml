@@ -90,6 +90,14 @@
                 <field name="contract_status"/>
                 <field name="tag_ids" widget="many2many_tags"/>
             </xpath>
+            <!--Bổ sung thông tin PR ID từ purchase.request-->
+            <xpath expr="//field[@name='origin']" position="replace">
+                <field name="purchase_request_id" string="Nguồn"/>
+            </xpath>
+            <!--Bổ sung thông tin PR ID từ purchase.request-->
+            <xpath expr="//field[@name='date_planned']" position="replace">
+                <field name="date_order" string="Ngày đặt hàng"/>
+            </xpath>
         </field>
     </record>
 	<!--Override menu của model: purchase.order -->

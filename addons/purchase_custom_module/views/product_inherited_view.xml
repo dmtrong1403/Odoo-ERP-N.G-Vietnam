@@ -39,8 +39,8 @@
         <field name="arch" type="xml">
             <form>
                 <group>
-                    <field name="attribute_id"/>
-                    <field name="name"/>
+                    <field name="attribute_id" placeholder="Ví dụ: Lưu lượng" string="Tên yêu cầu kỹ thuật"/>
+                    <field name="name" placeholder="Ví dụ: 33 m3/h"/>
                 </group>
             </form>
         </field>

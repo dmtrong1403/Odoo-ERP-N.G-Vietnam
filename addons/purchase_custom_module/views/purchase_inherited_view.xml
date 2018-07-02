@@ -16,7 +16,7 @@
             </xpath>
             <!--Bổ sung STT item theo từng line-->
             <xpath expr="//field[@name='product_id']" position="before">
-                <field name="line_no" string="STT" readonly="1"/>
+                <field name="line_no" string="STT" readonly="1" invisible="1"/>
             </xpath>
         </field>
     </record>
@@ -75,7 +75,7 @@
             </xpath>
             <!--Bổ sung STT item theo từng line-->
             <xpath expr="//field[@name='product_id']" position="before">
-                <field name="line_no" string="STT" readonly="1"/>
+                <field name="line_no" string="STT" readonly="1" invisible="1"/>
             </xpath>
         </field>
     </record>

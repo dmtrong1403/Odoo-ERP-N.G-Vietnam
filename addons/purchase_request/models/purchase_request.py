@@ -52,6 +52,7 @@ class purchase_request(models.Model):
     state = fields.Selection(PR_STATUS, string="Trạng thái xét duyệt", default="draft", track_visibility="onchange")
     is_seen = fields.Boolean(default=True)
     receiver = fields.Many2one(comodel_name="res.users", string="Người tiếp nhận")
+    product_note = fields.Char(string="Tên vật tư gợi nhớ")
 
     _sql_constraints = [
         ("name_uniq", "UNIQUE(name)",

@@ -29,6 +29,7 @@
                     <field name="user_id"/>
                     <field name="project_ids" widget="many2many_tags"/>
                     <field name="tag_ids" widget="many2many_tags"/>
+                    <field name="product_note"/>
                     <field name="propose"/>
                     <field name="state"/>
                     <field name="receiver"/>
@@ -79,6 +80,7 @@
                             <group>
                                 <field name="project_ids" widget="many2many_tags"/>
                                 <field name="is_seen" invisible="1"/>
+                                <field name="product_note"/>
                             </group>
                             <group>
                                 <field name="propose"/>
